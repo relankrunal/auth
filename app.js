@@ -3,6 +3,9 @@ const app = express();
 require("dotenv").config();
 const { auth, requiresAuth } = require("express-openid-connect");
 
+//this is a library that serves to create HTTP requests that are present externally.
+cost axios = require('axios');
+
 app.use(
   auth({
     authRequired: false,
@@ -27,6 +30,36 @@ app.get("/profile", requiresAuth(), (req, res) => {
 
 // GET /teams?id/resources API route to list resources of specific team
 app.get("/teams?id/resources", (req, res) => {
+  try{
+    const request = {
+     "schema_version": "",
+     "snap_token": "",
+     "depth": 20
+   },
+   "entity": {
+     "type": "team",
+     "id": "1"
+   },
+   "permission": "list_resources",
+   "subject": {
+     "type": "user",
+     "id": //USER ID THAT COME FROM REQUEST PARAMS: id,
+     "relation": ""
+   },
+ };
+    const outPut = async() => {
+       
+        const response = awit axiox.post('GIVE URL HERE', request);
+      if(response.status === 200){
+        return response.data;
+      }
+      return false;
+    }
+  }
+  catch (error)
+  {
+    return false;
+  }
   // create a middleware for that get receiver
   // that sends a REST API request to:
   // "localhost:3476/v1/permissions/check" endpoint
@@ -83,6 +116,37 @@ app.get("/resources?id", (req, res) => {
 // PUT /resources?id API route to edit resource
 
 app.put("/resources?id", (req, res) => {
+  
+  try{
+    const request = {
+     "schema_version": "",
+     "snap_token": "",
+     "depth": 20
+   },
+   "entity": {
+     "type": "team",
+     "id": "1"
+   },
+   "permission": "list_resources",
+   "subject": {
+     "type": "user",
+     "id": //USER ID THAT COME FROM REQUEST PARAMS: id,
+     "relation": ""
+   },
+ };
+    const outPut = async() => {
+       
+        const response = awit axiox.put('GIVE URL HERE', request);
+      if(response.status === 200){
+        return response.data;
+      }
+      return false;
+    }
+  }
+  catch (error)
+  {
+    return false;
+  }
   // create a middleware for that get receiver
   // that sends a REST API request to:
   // "localhost:3476/v1/permissions/check" endpoint
