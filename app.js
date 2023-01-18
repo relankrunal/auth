@@ -3,6 +3,12 @@ const app = express();
 require("dotenv").config();
 const { auth, requiresAuth } = require("express-openid-connect");
 
+const getBaseUrl = ()=>{
+  if(window.location.pathname.startsWith("/")){
+    return "";
+  }
+  return "";
+}
 //this is a library that serves to create HTTP requests that are present externally.
 cost axios = require('axios');
 
@@ -48,7 +54,7 @@ app.get("/teams?id/resources", (req, res) => {
    },
  };
     const outPut = async() => {
-       
+       const url = baseService.getBaseURL();
         const response = awit axiox.post('GIVE URL HERE', request);
       if(response.status === 200){
         return response.data;
@@ -198,7 +204,7 @@ app.delete("/resources?id", (req, res) => {
   }
   */
 });
-
+export const baseService = {getBaseUrL};
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
